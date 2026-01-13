@@ -4,6 +4,8 @@
 
     <h1>Alla varor</h1>
 
+    <input type="text" id="searchInput" v-model="searchValue" class="form-control m-3" placeholder="Sök vara...">
+
     <table class="table">
   <thead>
     <tr>
@@ -15,9 +17,11 @@
       <th scope="col">Bild</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="myTable">
 
-    <ItemSection v-for="item in items" :item="item" :key="item._id"/>
+    <ItemSection v-for="item in filterItems" :item="item" :key="item._id"/>
+
+    <p v-if="filterItems.length === 0">Inga produkter matchade sökningen</p>
 
   </tbody>
 </table>
@@ -27,14 +31,16 @@
 <script setup>
     import Header from '@/components/Header.vue';
     import ItemSection from '@/components/ItemSection.vue';
-        import { ref, onMounted } from 'vue';
+        import { ref, onMounted, computed } from 'vue';
     
         const items = ref([])
+        const searchValue = ref('')
     
         onMounted(() => {
             getItems();
         })
-    
+        
+        //Get metod för att hämta alla produkter
         const getItems = async () => {
             const token = localStorage.getItem('token');
             console.log(token);
@@ -55,5 +61,14 @@
                 console.log("Error fetching items: " + error)
             }
         }
+
+        //Filtrerar sökinputs
+        const filterItems = computed(() => {
+            return items.value.filter(item => {
+               return item.name.toLowerCase().includes(searchValue.value.toLowerCase());
+            })
+        })
+
+        
     
     </script>
