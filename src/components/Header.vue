@@ -1,9 +1,11 @@
 <template>
-    <nav>
-    <ul>
-      <li><RouterLink to="/">Hem</RouterLink></li>
-      <li><RouterLink to="/items">Varor</RouterLink></li>
-    </ul>
+    <nav class="navbar navbar-expand-md">
+    <div class="container">
+        <ul class="navbar-nav">
+        <li class="nav-item"><RouterLink to="/">Hem</RouterLink></li>
+        <li class="nav-item"><RouterLink to="/items">Varor</RouterLink></li>
+        </ul>
+    </div>
   </nav>
 </template>
 
@@ -12,9 +14,5 @@
 </script>
 
 <style scoped>
-    ul{
-        display: flex;
-        justify-content: center;
-        gap: 3em;
-    }
+
 </style>
