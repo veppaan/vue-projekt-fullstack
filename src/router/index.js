@@ -18,7 +18,10 @@ const router = createRouter({
     {
       path: '/items',
       name: 'items',
-      component: ItemsView
+      component: ItemsView,
+      meta: {
+        requiresAuth: true
+      }
     }
     ,
     {

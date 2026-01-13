@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import Header from '@/components/Header.vue';
-
-</script>
-
 <template>
     <Header />
 
@@ -24,3 +19,36 @@ import Header from '@/components/Header.vue';
   </tbody>
 </table>
 </template>
+
+<script setup>
+    import Header from '@/components/Header.vue';
+    import ItemSection from '@/components/ItemSection.vue';
+        import { ref, onMounted } from 'vue';
+    
+        const series = ref([])
+    
+        onMounted(() => {
+            getItems();
+        })
+    
+        const getItems = async () => {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            try {
+            const resp = await fetch("https://backend-projekt-fullstack.onrender.com/items", {
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ` + token
+                }
+            })
+            if(resp.ok) {
+                const data = await resp.json();
+                console.log(data);
+            }
+            } catch (error) {
+                console.log("Error fetching series: " + error)
+            }
+        }
+    
+    </script>

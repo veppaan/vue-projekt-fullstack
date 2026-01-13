@@ -8,7 +8,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-        <li class="nav-item"><RouterLink to="/" active-class="active" class="nav-link">Hem</RouterLink></li>
+        <li class="nav-item"><RouterLink to="/home" active-class="active" class="nav-link">Hem</RouterLink></li>
         <li class="nav-item"><RouterLink to="/items" active-class="active" class="nav-link">Varor</RouterLink></li>
     </ul>
   </div>
