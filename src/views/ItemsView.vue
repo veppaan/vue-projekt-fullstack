@@ -15,6 +15,7 @@
       <th scope="col">Saldo</th>
       <th scope="col">Artikelnummer</th>
       <th scope="col">Bild</th>
+      <th scope="col">Ändringar</th>
     </tr>
   </thead>
   <tbody id="myTable">

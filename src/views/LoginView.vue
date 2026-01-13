@@ -1,6 +1,7 @@
 <template>
     <HeaderFirst />
     <div class="container">
+        <h1>Logga in</h1>
     <form @submit.prevent="loginUser">
         <div class="form-group">
             <label for="exampleInputEmail1">Användarnamn:</label>
