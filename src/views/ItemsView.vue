@@ -1,5 +1,6 @@
 <template>
     <Header />
+    <div class="container">
 
     <h1>Alla varor</h1>
 
@@ -16,8 +17,11 @@
   </thead>
   <tbody>
 
+    <ItemSection v-for="item in items" :item="item" :key="item._id"/>
+
   </tbody>
 </table>
+</div>
 </template>
 
 <script setup>
@@ -25,7 +29,7 @@
     import ItemSection from '@/components/ItemSection.vue';
         import { ref, onMounted } from 'vue';
     
-        const series = ref([])
+        const items = ref([])
     
         onMounted(() => {
             getItems();
@@ -45,9 +49,10 @@
             if(resp.ok) {
                 const data = await resp.json();
                 console.log(data);
+                items.value = data;
             }
             } catch (error) {
-                console.log("Error fetching series: " + error)
+                console.log("Error fetching items: " + error)
             }
         }
     
