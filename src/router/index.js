@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import ItemsView from '@/views/ItemsView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterVue from '@/views/RegisterVue.vue'
+import AddView from '@/views/AddView.vue'
+import EditView from '@/views/EditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,18 +24,26 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
-    }
-    ,
+    },
     {
       path: '/login',
       name: 'login',
       component: LoginView
-    }
-    ,
+    },
     {
       path: '/register',
       name: 'register',
       component: RegisterVue
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditView
+    },
+    {
+      path: '/add',
+      name: 'add',
+      component: AddView
     }
   ],
 })
