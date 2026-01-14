@@ -9,17 +9,17 @@
 </div>
 
     <input type="text" id="searchInput" v-model="searchValue" class="form-control m-3" placeholder="Sök vara...">
-
+<div>
     <table class="table">
   <thead>
     <tr>
       <th scope="col">Namn</th>
-      <th scope="col">Beskrivning</th>
-      <th scope="col">Pris</th>
+      <th scope="col" class="d-none d-md-table-cell">Beskrivning</th>
+      <th scope="col" class="d-none d-md-table-cell">Pris</th>
       <th scope="col">Saldo</th>
-      <th scope="col">Artikelnummer</th>
+      <th scope="col" class="text-center">Artikelnummer</th>
       <th scope="col">Bild</th>
-      <th scope="col">Ändringar</th>
+      <th scope="col" class="text-center">Ändringar</th>
     </tr>
   </thead>
   <tbody id="myTable">
@@ -30,6 +30,7 @@
 
   </tbody>
 </table>
+</div>
 </div>
 </template>
 

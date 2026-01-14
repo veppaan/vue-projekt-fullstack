@@ -24,7 +24,8 @@
             </div>
             <div class="form-group">
                 <label for="image">Bild</label>
-                <input type="text" class="form-control" id="image" v-model="imageInput">
+                <input type="file" @change="handleFileChange" class="form-control" id="image">
+                <img v-if="base64string" :src="base64string" alt="preview" width="100" />
             </div>
             
             <button type="submit" class="btn btn-primary">Lägg till vara</button>
@@ -38,12 +39,30 @@
 
     const router = useRouter()
 
+    const chosenImage = ref(null)
+    const base64string = ref("")
+
+    //Funktion för att hantera fil
+    const handleFileChange = (event) => {
+    chosenImage.value = event.target.files[0];
+    
+    //Filereader för att kunna läsa fil
+    const reader = new FileReader();
+    //gör till en sträng
+    reader.readAsDataURL(chosenImage.value);
+        //resultatet har strängen
+        reader.onload = () => {
+            if(typeof reader.result === "string")
+            base64string.value = reader.result;
+        };
+    };
+
     const nameInput = ref('');
     const descriptionInput = ref('');
     const priceInput = ref('');
     const stockInput = ref('');
     const articleNumberInput = ref('');
-    const imageInput = ref('');
+    const imageInput = ref();
     const error = ref('');
 
 
@@ -51,14 +70,25 @@
             const token = localStorage.getItem('token');
             console.log(token);
 
-            const inputs = {
+            if(base64string.value){
+                const inputs = {
                 name: nameInput.value,
                 description: descriptionInput.value,
                 price: priceInput.value,
                 stock: stockInput.value,
                 articleNumber: articleNumberInput.value,
-                image: imageInput.value
+                image: base64string.value
+                }
+            } else {
+                const inputs = {
+                name: nameInput.value,
+                description: descriptionInput.value,
+                price: priceInput.value,
+                stock: stockInput.value,
+                articleNumber: articleNumberInput.value
             }
+
+    
             try {
                 console.log(inputs)
             const res = await fetch("https://backend-projekt-fullstack.onrender.com/items", {
@@ -79,5 +109,6 @@
                 console.log("Error adding item: " + error)
             }
         }
+    }
 
 </script>
