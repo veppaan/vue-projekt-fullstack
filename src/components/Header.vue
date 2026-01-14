@@ -10,6 +10,7 @@
     <ul class="navbar-nav">
         <li class="nav-item"><RouterLink to="/home" active-class="active" class="nav-link">Hem</RouterLink></li>
         <li class="nav-item"><RouterLink to="/items" active-class="active" class="nav-link">Varor</RouterLink></li>
+        <li class="nav-item"><button class="nav-item btn btn-light" @click="logout">Logga ut</button></li>
     </ul>
   </div>
 </div>
@@ -17,10 +18,24 @@
 
 </template>
 
-<script>
+<script setup>
     import { RouterLink } from 'vue-router';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter()
+
+    const logout = () => {
+        console.log("klick")
+        const token = localStorage.getItem('token')
+        console.log(token)
+        localStorage.removeItem('token')
+        router.push('/login')
+    }
 </script>
 
 <style scoped>
+    .logout:hover{
+        cursor: pointer;
+    }
 
 </style>

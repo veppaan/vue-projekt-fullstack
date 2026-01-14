@@ -38,12 +38,18 @@ const router = createRouter({
     {
       path: '/edit/:id',
       name: 'edit',
-      component: EditView
+      component: EditView,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/add',
       name: 'add',
-      component: AddView
+      component: AddView,
+      meta: {
+        requiresAuth: true
+      }
     }
   ],
 })
