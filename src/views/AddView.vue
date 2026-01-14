@@ -1,5 +1,6 @@
     <template>
         <Header />
+        <div class="container">
         <form @submit.prevent="addItem">
             <h2>Lägg till produkt</h2>
             <div class="form-group">
@@ -26,10 +27,12 @@
                 <label for="image">Bild</label>
                 <input type="file" @change="handleFileChange" class="form-control" id="image">
                 <img v-if="base64string" :src="base64string" alt="preview" width="100" />
+                <button v-if="base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
             </div>
             
             <button type="submit" class="btn btn-primary">Lägg till vara</button>
             </form>
+        </div>
     </template>
 
 <script setup lang="ts">
@@ -57,12 +60,18 @@
         };
     };
 
+    const deleteImg = () => {
+        console.log(chosenImage.value, base64string.value)
+        chosenImage.value = ''
+        base64string.value = null
+        console.log(chosenImage.value, base64string.value)
+    }
+
     const nameInput = ref('');
     const descriptionInput = ref('');
     const priceInput = ref('');
     const stockInput = ref('');
     const articleNumberInput = ref('');
-    const imageInput = ref();
     const error = ref('');
 
 
@@ -70,24 +79,19 @@
             const token = localStorage.getItem('token');
             console.log(token);
 
-            if(base64string.value){
-                const inputs = {
+                let inputs = {
                 name: nameInput.value,
                 description: descriptionInput.value,
                 price: priceInput.value,
                 stock: stockInput.value,
                 articleNumber: articleNumberInput.value,
-                image: base64string.value
+                image: undefined
                 }
-            } else {
-                const inputs = {
-                name: nameInput.value,
-                description: descriptionInput.value,
-                price: priceInput.value,
-                stock: stockInput.value,
-                articleNumber: articleNumberInput.value
-            }
 
+                if(base64string.value){
+                    inputs.image = base64string.value
+                }
+        
     
             try {
                 console.log(inputs)
@@ -109,6 +113,5 @@
                 console.log("Error adding item: " + error)
             }
         }
-    }
 
 </script>
