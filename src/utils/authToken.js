@@ -22,7 +22,7 @@ export const authToken = async () => {
         }
         if(resp.ok) {
             const acceptedToken = await resp.json()
-            console.log('Välkommen ' + acceptedToken.user)
+            console.log('Välkommen ' + acceptedToken.user.firstname)
             return true
         }
         } catch (error) {

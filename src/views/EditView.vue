@@ -120,11 +120,11 @@
         //Uppdatera vara
         const updateItem = async () => {
             let inputs = {
-                name: item.name.value,
-                description: item.name.description,
-                price: item.name.price,
-                stock: item.name.stock,
-                articleNumber: item.name.articleNumber,
+                name: item.value.name,
+                description: item.value.description,
+                price: item.value.price,
+                stock: item.value.stock,
+                articleNumber: item.value.articleNumber,
                 image: undefined
                 }
 
