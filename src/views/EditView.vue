@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label for="description">Beskrivning</label>
-            <input type="textarea" class="form-control" id="description" aria-describedby="description" placeholder="Skriv beskrivning" v-model="item.description">
+            <textarea rows="5" class="form-control" id="description" aria-describedby="description" placeholder="Skriv beskrivning" v-model="item.description"></textarea>
         </div>
         <div class="form-group">
             <label for="price">Pris</label>

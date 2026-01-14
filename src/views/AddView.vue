@@ -8,9 +8,9 @@
                 <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Skriv namnet på varan" v-model="nameInput">
             </div>
             <div class="form-group">
-                <label for="description">Beskrivning</label>
-                <input type="textarea" class="form-control" id="dec" aria-describedby="emailHelp" placeholder="Skriv beskrivning" v-model="descriptionInput">
-            </div>
+            <label for="description">Beskrivning</label>
+            <textarea rows="5" class="form-control" id="description" aria-describedby="description" placeholder="Skriv beskrivning" v-model="descriptionInput"></textarea>
+        </div>
             <div class="form-group">
                 <label for="price">Pris</label>
                 <input type="number" class="form-control" id="price" aria-describedby="emailHelp" placeholder="Pris på varan" v-model.number="priceInput">
