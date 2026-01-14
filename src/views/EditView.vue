@@ -1,5 +1,6 @@
 <template>
     <Header />
+    <div class="container">
     <form @submit.prevent="updateItem">
         <h2>Ändra</h2>
         <div class="form-group">
@@ -23,23 +24,58 @@
             <input type="number" class="form-control" id="article-number" aria-describedby="artikelnummer" placeholder="Artikelnummer" v-model.number="item.articleNumber">
         </div>
         <div class="form-group">
-            <label for="image">Bild</label>
-            <input type="text" class="form-control" id="image" aria-describedby="bild" placeholder="Bild" v-model="item.image">
-        </div>
+                <label for="image">Bild</label>
+                <input type="file" @change="handleFileChange" class="form-control" id="image">
+                <img v-if="item.image || base64string" :src="item.image || base64string" alt="preview" width="100" />
+                <button v-if="item.image || base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
+            </div>
 
         <button type="submit" class="btn btn-primary">Uppdatera vara</button>
 </form>
+</div>
 </template>
 
 <script setup>
     import Header from '@/components/Header.vue';
+    import { authToken } from '@/utils/authToken';
     import { onMounted, ref } from 'vue';
     import { useRoute } from 'vue-router';
     import { useRouter } from 'vue-router';
 
     onMounted(() => {
+        const checkingToken = async () => { await authToken()
+        if(!checkingToken) return
+
             getItem();
+        }
+        checkingToken()
     })
+
+    const chosenImage = ref(null)
+    const base64string = ref("")
+
+    //Funktion för att hantera fil
+    const handleFileChange = (event) => {
+    chosenImage.value = event.target.files[0];
+    
+    //Filereader för att kunna läsa fil
+    const reader = new FileReader();
+    //gör till en sträng
+    reader.readAsDataURL(chosenImage.value);
+        //resultatet har strängen
+        reader.onload = () => {
+            if(typeof reader.result === "string")
+            base64string.value = reader.result;
+        };
+    };
+
+    const deleteImg = () => {
+        console.log(chosenImage.value, base64string.value)
+        chosenImage.value = ''
+        base64string.value = null
+        item.value.image = ''
+        console.log(chosenImage.value, base64string.value)
+    }
 
     const route = useRoute()
     const router = useRouter()
@@ -83,14 +119,18 @@
 
         //Uppdatera vara
         const updateItem = async () => {
-            const inputs = {
-                name: item.value.name,
-                description: item.value.description,
-                price: item.value.price,
-                stock: item.value.stock,
-                articleNumber: item.value.articleNumber,
-                image: item.value.image
-            }
+            let inputs = {
+                name: item.name.value,
+                description: item.name.description,
+                price: item.name.price,
+                stock: item.name.stock,
+                articleNumber: item.name.articleNumber,
+                image: undefined
+                }
+
+                if(base64string.value){
+                    inputs.image = base64string.value
+                }
             console.log(inputs)
             const token = localStorage.getItem('token');
             const id = route.params.id

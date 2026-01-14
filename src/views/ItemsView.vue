@@ -18,7 +18,7 @@
       <th scope="col" class="d-none d-md-table-cell">Pris</th>
       <th scope="col">Saldo</th>
       <th scope="col" class="text-center">Artikelnummer</th>
-      <th scope="col">Bild</th>
+      <th scope="col" class="text-center">Bild</th>
       <th scope="col" class="text-center">Ändringar</th>
     </tr>
   </thead>
@@ -37,6 +37,7 @@
 <script setup>
     import Header from '@/components/Header.vue';
     import ItemSection from '@/components/ItemSection.vue';
+    import { authToken } from '@/utils/authToken';
     import { RouterLink } from 'vue-router';
         import { ref, onMounted, computed } from 'vue';
     
@@ -44,8 +45,13 @@
         const searchValue = ref('')
     
         onMounted(() => {
+        const checkingToken = async () => { await authToken()
+        if(!checkingToken) return
+        
             getItems();
-        })
+        }
+        checkingToken()
+    })
         
         //Get metod för att hämta alla produkter
         const getItems = async () => {
