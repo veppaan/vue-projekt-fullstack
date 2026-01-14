@@ -4,6 +4,10 @@
 
     <h1>Alla varor</h1>
 
+    <div class="addItemBtn">
+    <RouterLink to="/add" class="btn btn-primary btn-sm">Lägg till produkt</RouterLink>
+</div>
+
     <input type="text" id="searchInput" v-model="searchValue" class="form-control m-3" placeholder="Sök vara...">
 
     <table class="table">
@@ -32,6 +36,7 @@
 <script setup>
     import Header from '@/components/Header.vue';
     import ItemSection from '@/components/ItemSection.vue';
+    import { RouterLink } from 'vue-router';
         import { ref, onMounted, computed } from 'vue';
     
         const items = ref([])
