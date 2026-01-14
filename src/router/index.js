@@ -6,6 +6,7 @@ import RegisterVue from '@/views/RegisterVue.vue'
 import AddView from '@/views/AddView.vue'
 import EditView from '@/views/EditView.vue'
 
+//Alla routers för alla sidor
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,7 +54,7 @@ const router = createRouter({
     }
   ],
 })
-
+//Kollar om det finns token
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token');
     if(to.meta.requiresAuth && !token){
