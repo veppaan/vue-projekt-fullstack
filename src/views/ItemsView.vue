@@ -66,12 +66,9 @@
         //Uppdatera ett saldo
         const updateStock = async (id, stock) => {
             const inputs = {
-                stock: stock.value
+                stock: stock
             }
-            console.log(inputs);
-
             const token = localStorage.getItem('token');
-            console.log(token);
             try {
             const resp = await fetch(`https://backend-projekt-fullstack.onrender.com/items/edit/${id}`, {
                 method: "PUT",
