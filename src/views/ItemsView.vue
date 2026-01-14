@@ -121,7 +121,7 @@
         //Filtrerar sökinputs
         const filterItems = computed(() => {
             return items.value.filter(item => {
-               return item.name.toLowerCase().includes(searchValue.value.toLowerCase());
+               return (item.name.toLowerCase().includes(searchValue.value.toLowerCase()) ||item.description.toLowerCase().includes(searchValue.value.toLowerCase()) || String(item.articleNumber).includes(searchValue.value) || String(item.price).includes(searchValue.value)) ;
             })
         })
 
