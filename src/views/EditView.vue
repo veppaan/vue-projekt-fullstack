@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
                 <label for="image">Bild</label>
-                <input type="file" @change="handleFileChange" class="form-control" id="image">
+                <input type="file" @change="handleFileChange" class="form-control mb-3" id="image">
                 <img v-if="item.image || base64string" :src="item.image || base64string" alt="preview" width="100" />
                 <button v-if="item.image || base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
                 <p class="error" v-if="errors['image']">{{ errors['image'] }}</p>
@@ -141,6 +141,7 @@
             console.log(inputs)
             const token = localStorage.getItem('token');
             const id = route.params.id
+            console.log(id)
             try {
             const resp = await fetch(`https://backend-projekt-fullstack.onrender.com/items/${id}`, {
                 method: "PUT",
@@ -161,7 +162,6 @@
                 errors.value = data.errors;
             }
             if(resp.ok) {
-                const data = await resp.json();
                 console.log(data);
                 console.log("Vara uppdaterad!");
                 router.push('/items')
