@@ -16,9 +16,9 @@
     import { authToken } from '@/utils/authToken';
     import { onMounted } from 'vue';
     import { ref } from 'vue';
-    import picOne from '../assets/catharina_kippel_2.jpg';
-    import picTwo from '../assets/image7-2413-0100-2287-0100-2580-0100-2577-0100-ElsaBeskow-Group.jpg';
-    import picThree from '../assets/image8-EBMugWhHandle-Group.jpg';
+    import picOne from '@/assets/catharina_kippel_2.jpg';
+    import picTwo from '@/assets/image7-2413-0100-2287-0100-2580-0100-2577-0100-ElsaBeskow-Group.jpg';
+    import picThree from '@/assets/image8-EBMugWhHandle-Group.jpg';
 
     const usersFirstname = ref('')
 
