@@ -6,28 +6,34 @@
         <div class="form-group mt-3">
             <label for="name">Namn</label>
             <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Skriv namnet på varan" v-model="item.name">
+            <p class="error" v-if="errors['name']">{{ errors['name'] }}</p>
         </div>
         <div class="form-group">
             <label for="description">Beskrivning</label>
             <textarea rows="5" class="form-control" id="description" aria-describedby="description" placeholder="Skriv beskrivning" v-model="item.description"></textarea>
+            <p class="error" v-if="errors['description']">{{ errors['description'] }}</p>
         </div>
         <div class="form-group">
             <label for="price">Pris</label>
             <input type="number" class="form-control" id="price" aria-describedby="price" placeholder="Pris" v-model.number="item.price">
+            <p class="error" v-if="errors['price']">{{ errors['price'] }}</p>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Lagersaldo</label>
             <input type="number" class="form-control" id="stock" aria-describedby="stock" placeholder="Saldo" v-model.number="item.stock">
+            <p class="error" v-if="errors['stock']">{{ errors['stock'] }}</p>
         </div>
         <div class="form-group">
             <label for="article-number">Artikelnummer</label>
             <input type="number" class="form-control" id="article-number" aria-describedby="artikelnummer" placeholder="Artikelnummer" v-model.number="item.articleNumber">
+            <p class="error" v-if="errors['articleNumber']">{{ errors['articleNumber'] }}</p>
         </div>
         <div class="form-group">
                 <label for="image">Bild</label>
                 <input type="file" @change="handleFileChange" class="form-control" id="image">
                 <img v-if="item.image || base64string" :src="item.image || base64string" alt="preview" width="100" />
                 <button v-if="item.image || base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
+                <p class="error" v-if="errors['image']">{{ errors['image'] }}</p>
             </div>
 
         <button type="submit" class="btn btn-primary w-100">Uppdatera vara</button>
@@ -116,6 +122,7 @@
                     console.log("Error fetching items: " + error)
                 }
             }
+            const errors = ref({})
 
         //Uppdatera vara
         const updateItem = async () => {
@@ -143,6 +150,16 @@
                 },
                 body: JSON.stringify(inputs)
             })
+            if(resp.status === 413){
+                errors.value = {
+                    image: 'Filen är för stor, välj en mindre'
+                }
+                return
+            }
+            const data = await resp.json()
+            if(!resp.ok){
+                errors.value = data.errors;
+            }
             if(resp.ok) {
                 const data = await resp.json();
                 console.log(data);
@@ -155,3 +172,10 @@
         }
     
     </script>
+
+<style scoped>
+    .error{
+        font-weight: 300;
+        color: red;
+    }
+</style>

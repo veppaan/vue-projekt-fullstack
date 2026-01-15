@@ -6,10 +6,12 @@
         <div class="form-group col-12 col-md-6">
             <label for="username">Användarnamn:</label>
             <input type="text" class="form-control" id="username" aria-describedby="Username" placeholder="Skriv ditt användarnamn" v-model="username">
+            <p class="error" v-if="errors['username']">{{ errors['username'] }}</p>
         </div>
         <div class="form-group col-12 col-md-6 mt-2">
             <label for="password">Lösenord:</label>
             <input type="password" class="form-control" id="password" aria-describedby="Password" placeholder="Skriv ditt lösenord" v-model="password">
+            <p class="error" v-if="errors['password']">{{ errors['password'] }}</p>
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Logga in</button>
@@ -17,7 +19,7 @@
 </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
     import HeaderFirst from '@/components/HeaderFirst.vue';
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
@@ -26,7 +28,7 @@
 
     const username = ref('');
     const password = ref('');
-    const error = ref('');
+    const errors = ref({});
 
     const loginUser = async () => {
 
@@ -34,8 +36,6 @@
                 username: username.value,
                 password: password.value,
         }
-
-        error.value = "";
         try {
             const res = await fetch("https://backend-projekt-fullstack.onrender.com/admins/login", {
                 method: "POST",
@@ -44,6 +44,15 @@
                 },
                 body: JSON.stringify(inputs)
             });
+            if(res.status === 401){
+                errors.value = {
+                    password: 'Fel lösenord/användarnamn'
+                }
+                return
+            }
+            if(!res.ok){
+                errors.value = data.errors;
+            }
             if(res.ok){
                 const data = await res.json();
                 console.log("Inloggning lyckades!");
@@ -57,3 +66,10 @@
     }
     
 </script>
+
+<style scoped>
+    .error{
+        font-weight: 300;
+        color: red;
+    }
+</style>

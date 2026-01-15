@@ -6,14 +6,17 @@
         <div class="form-group col-12 col-md-6">
             <label for="firstname">Förnamn:</label>
             <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Skriv ditt förnamn" v-model="firstname">
+            <p class="error" v-if="errors['firstname']">{{ errors['firstname'] }}</p>
         </div>
         <div class="form-group col-12 col-md-6 mt-2">
             <label for="username">Användarnamn:</label>
             <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Skriv ditt användarnamn" v-model="username">
+            <p class="error" v-if="errors['username']">{{ errors['username'] }}</p>
         </div>
         <div class="form-group col-12 col-md-6 mt-2">
             <label for="password">Lösenord:</label>
             <input type="password" class="form-control" id="password" placeholder="Skriv ditt lösenord" v-model="password">
+            <p class="error" v-if="errors['password']">{{ errors['password'] }}</p>
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Registrera</button>
@@ -31,7 +34,7 @@
     const username = ref('');
     const password = ref('');
     const firstname = ref('')
-    const error = ref('');
+    const errors = ref({});
 
     const registerUser = async () => {
 
@@ -41,7 +44,6 @@
                 password: password.value,
         }
 
-        error.value = "";
         try {
             const res = await fetch("https://backend-projekt-fullstack.onrender.com/admins/register", {
                 method: "POST",
@@ -50,6 +52,10 @@
                 },
                 body: JSON.stringify(inputs)
             });
+            const data = await res.json()
+            if(!res.ok){
+                errors.value = data.errors;
+            }
             if(res.ok){
                 console.log("Registrering lyckades " + firstname);
                 router.push('/login')
@@ -61,3 +67,10 @@
     }
     
 </script>
+
+<style scoped>
+    .error{
+        font-weight: 300;
+        color: red;
+    }
+</style>

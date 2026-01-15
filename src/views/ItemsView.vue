@@ -10,7 +10,7 @@
 
     <input type="text" id="searchInput" v-model="searchValue" class="form-control mb-3 mt-3" placeholder="Sök vara...">
 <div>
-    <table class="table">
+    <table class="table mb-5">
   <thead>
     <tr>
       <th scope="col">Namn</th>

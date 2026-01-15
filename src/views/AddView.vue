@@ -6,28 +6,34 @@
             <div class="form-group mt-3">
                 <label for="name">Namn</label>
                 <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Skriv namnet på varan" v-model="nameInput">
+                <p class="error" v-if="errors['name']">{{ errors['name'] }}</p>
             </div>
             <div class="form-group">
             <label for="description">Beskrivning</label>
             <textarea rows="5" class="form-control" id="description" aria-describedby="description" placeholder="Skriv beskrivning" v-model="descriptionInput"></textarea>
+            <p class="error" v-if="errors['description']">{{ errors['description'] }}</p>
         </div>
             <div class="form-group">
                 <label for="price">Pris</label>
                 <input type="number" class="form-control" id="price" aria-describedby="emailHelp" placeholder="Pris på varan" v-model.number="priceInput">
+                <p class="error" v-if="errors['price']">{{ errors['price'] }}</p>
             </div>
             <div class="form-group">
                 <label for="stock">Lagersaldo</label>
                 <input type="number" class="form-control" id="stock" aria-describedby="emailHelp" placeholder="Saldo på lager" v-model.number="stockInput">
+                <p class="error" v-if="errors['stock']">{{ errors['stock'] }}</p>
             </div>
             <div class="form-group">
                 <label for="articlenumber">Artikelnummer</label>
                 <input type="text" class="form-control" id="articlenumber" placeholder="Artikelnummer" v-model.number="articleNumberInput">
+                <p class="error" v-if="errors['articleNumber']">{{ errors['articleNumber'] }}</p>
             </div>
             <div class="form-group">
                 <label for="image">Bild</label>
                 <input type="file" @change="handleFileChange" class="form-control" id="image">
                 <img v-if="base64string" :src="base64string" alt="preview" width="100" />
-                <button v-if="base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
+                <button v-if="base64string" type="button" class="btn btn-danger m-3" @click="deleteImg">Ta bort bild</button>
+                <p class="error" v-if="errors['image']">{{ errors['image'] }}</p>
             </div>
             
             <button type="submit" class="btn btn-primary w-100 mt-3 mb-7">Lägg till vara</button>
@@ -81,7 +87,7 @@
     const priceInput = ref('');
     const stockInput = ref('');
     const articleNumberInput = ref('');
-    const error = ref('');
+    const errors = ref({});
 
 
     const addItem = async () => {
@@ -112,9 +118,18 @@
                 },
                 body: JSON.stringify(inputs)
             })
+            if(res.status === 413){
+                errors.value = {
+                    image: 'Filen är för stor, välj en mindre'
+                }
+                return
+            }
+            const data = await res.json()
+            if(!res.ok){
+                console.log(data)
+                errors.value = data.errors;
+            }
             if(res.ok){
-                console.log("test")
-                const data = await res.json();
                 console.log("Vara tillagd!");
                 router.push('/items')
             }
@@ -124,3 +139,10 @@
         }
 
 </script>
+
+<style scoped>
+    .error{
+        font-weight: 300;
+        color: red;
+    }
+</style>
