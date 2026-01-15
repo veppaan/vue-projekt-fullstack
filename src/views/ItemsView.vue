@@ -24,7 +24,7 @@
   </thead>
   <tbody id="myTable">
 
-    <ItemSection v-for="item in filterItems" :item="item" :key="item._id" @delete-item="deleteItem" @update-stock="updateStock"/>
+    <ItemSection v-for="item in filterItems" :item="item" :key="item._id" @delete-item="deleteItem" @update-stock="updateStock" :is-success="successState[item._id] || false"/>
 
     <p v-if="filterItems.length === 0">Inga produkter matchade sökningen</p>
 
@@ -39,6 +39,7 @@
     import ItemSection from '@/components/ItemSection.vue';
     import { authToken } from '@/utils/authToken';
     import { RouterLink } from 'vue-router';
+    import { reactive } from 'vue';
         import { ref, onMounted, computed } from 'vue';
     
         const items = ref([])
@@ -74,7 +75,8 @@
                 console.log("Error fetching items: " + error)
             }
         }
-
+        //Skapar ett tomt reaktivt object
+        const successState = reactive({})
         //Uppdatera ett saldo
         const updateStock = async (id, stock) => {
             const inputs = {
@@ -91,8 +93,14 @@
                 body: JSON.stringify(inputs)
             })
             if(resp.ok) {
+                //Gör reaktiv data true i 3 sekunder
+                successState[id] = true
+                setTimeout(() => {
+                    successState[id] = false
+                }, 3000)
                 const data = await resp.json();
                 console.log(data);
+                
                 getItems();
             }
             } catch (error) {
