@@ -1,18 +1,18 @@
 <template>
     <HeaderFirst />
-    <div class="container">
-        <h1>Logga in</h1>
-    <form @submit.prevent="loginUser">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Användarnamn:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Skriv ditt användarnamn" v-model="username">
+    <div class="container mt-4">
+        <h1 class="text-center">Logga in</h1>
+    <form @submit.prevent="loginUser" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="form-group col-12 col-md-6">
+            <label for="username">Användarnamn:</label>
+            <input type="text" class="form-control" id="username" aria-describedby="Username" placeholder="Skriv ditt användarnamn" v-model="username">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Lösenord:</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Skriv ditt lösenord" v-model="password">
+        <div class="form-group col-12 col-md-6 mt-2">
+            <label for="password">Lösenord:</label>
+            <input type="password" class="form-control" id="password" aria-describedby="Password" placeholder="Skriv ditt lösenord" v-model="password">
         </div>
 
-        <button type="submit" class="btn btn-primary">Logga in</button>
+        <button type="submit" class="btn btn-primary mt-3">Logga in</button>
     </form>
 </div>
 </template>

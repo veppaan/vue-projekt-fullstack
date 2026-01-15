@@ -1,22 +1,22 @@
 <template>
     <HeaderFirst />
     <div class="container">
-        <h1>Registrera konto</h1>
-    <form @submit.prevent="registerUser">
-        <div class="form-group">
+        <h1 class="text-center mt-4">Registrera konto</h1>
+    <form @submit.prevent="registerUser" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="form-group col-12 col-md-6">
             <label for="firstname">Förnamn:</label>
             <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Skriv ditt förnamn" v-model="firstname">
         </div>
-        <div class="form-group">
+        <div class="form-group col-12 col-md-6 mt-2">
             <label for="username">Användarnamn:</label>
             <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Skriv ditt användarnamn" v-model="username">
         </div>
-        <div class="form-group">
+        <div class="form-group col-12 col-md-6 mt-2">
             <label for="password">Lösenord:</label>
             <input type="password" class="form-control" id="password" placeholder="Skriv ditt lösenord" v-model="password">
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrera</button>
+        <button type="submit" class="btn btn-primary mt-4">Registrera</button>
     </form>
 </div>
 </template>

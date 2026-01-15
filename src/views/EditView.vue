@@ -1,9 +1,9 @@
 <template>
     <Header />
-    <div class="container">
-    <form @submit.prevent="updateItem">
-        <h2>Ändra</h2>
-        <div class="form-group">
+    <div class="container mb-5">
+    <form @submit.prevent="updateItem" style="max-width: 800px; margin: 0 auto;">
+        <h2 class="mt-1">Ändra vara</h2>
+        <div class="form-group mt-3">
             <label for="name">Namn</label>
             <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Skriv namnet på varan" v-model="item.name">
         </div>
@@ -30,7 +30,7 @@
                 <button v-if="item.image || base64string" type="button" class="btn btn-danger" @click="deleteImg">Ta bort bild</button>
             </div>
 
-        <button type="submit" class="btn btn-primary">Uppdatera vara</button>
+        <button type="submit" class="btn btn-primary w-100">Uppdatera vara</button>
 </form>
 </div>
 </template>

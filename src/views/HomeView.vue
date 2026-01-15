@@ -1,6 +1,8 @@
 <template>
     <Header />
-    <h1>Startsida</h1>
+    <div class="container">
+        <h1>Startsida</h1>
+    </div>
 </template>
 
 <script setup lang="ts">

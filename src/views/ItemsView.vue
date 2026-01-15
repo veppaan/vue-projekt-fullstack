@@ -8,7 +8,7 @@
     <RouterLink to="/add" class="btn btn-primary btn-sm">Lägg till produkt</RouterLink>
 </div>
 
-    <input type="text" id="searchInput" v-model="searchValue" class="form-control m-3" placeholder="Sök vara...">
+    <input type="text" id="searchInput" v-model="searchValue" class="form-control mb-3 mt-3" placeholder="Sök vara...">
 <div>
     <table class="table">
   <thead>
