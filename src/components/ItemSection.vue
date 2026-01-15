@@ -44,8 +44,8 @@
     .itemImg{
         width: 100px;
         height: 100px;
-        background-size: cover;
-        background-position: center;
+        object-fit: contain;
+        object-position: center;
     }
     .btn-success, .btn-primary, .update-btn{
         transition: all 0.5s ease;
