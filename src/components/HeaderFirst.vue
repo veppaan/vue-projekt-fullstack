@@ -19,7 +19,7 @@
     
     <script setup>
         import { RouterLink } from 'vue-router';
-        import logo from '@/assets/DHS_Logo-Secondary_black.png'
+        import logo from '@/assets/DHS_Logo-Secondary_Black.png'
     </script>
     
     <style scoped>
