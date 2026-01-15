@@ -16,17 +16,17 @@
         </div>
         <div class="form-group">
             <label for="price">Pris</label>
-            <input type="number" class="form-control" id="price" aria-describedby="price" placeholder="Pris" v-model.number="item.price">
+            <input type="number" class="form-control" id="price" min="1" aria-describedby="price" placeholder="Pris" v-model.number="item.price">
             <p class="error" v-if="errors['price']">{{ errors['price'] }}</p>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Lagersaldo</label>
-            <input type="number" class="form-control" id="stock" aria-describedby="stock" placeholder="Saldo" v-model.number="item.stock">
+            <input type="number" class="form-control" id="stock" min="0" aria-describedby="stock" placeholder="Saldo" v-model.number="item.stock">
             <p class="error" v-if="errors['stock']">{{ errors['stock'] }}</p>
         </div>
         <div class="form-group">
             <label for="article-number">Artikelnummer</label>
-            <input type="number" class="form-control" id="article-number" aria-describedby="artikelnummer" placeholder="Artikelnummer" v-model.number="item.articleNumber">
+            <input type="number" class="form-control" min="1" id="article-number" aria-describedby="artikelnummer" placeholder="Artikelnummer" v-model.number="item.articleNumber">
             <p class="error" v-if="errors['articleNumber']">{{ errors['articleNumber'] }}</p>
         </div>
         <div class="form-group">
