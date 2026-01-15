@@ -24,7 +24,7 @@
 </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
     import HeaderFirst from '@/components/HeaderFirst.vue';
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';

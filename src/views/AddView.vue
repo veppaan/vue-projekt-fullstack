@@ -41,7 +41,7 @@
         </div>
     </template>
 
-<script setup lang="ts">
+<script setup>
     import Header from '@/components/Header.vue';
     import { authToken } from '@/utils/authToken';
     import { ref } from 'vue';
