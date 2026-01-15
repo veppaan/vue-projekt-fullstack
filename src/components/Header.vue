@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-  <RouterLink to="/home" class="navbar-brand"><img src="/images/DHS_Logo-Secondary_black.png" alt="Logotyp Design House Stockholm" width="300"></RouterLink>
+  <RouterLink to="/home" class="navbar-brand"><img :src="logo" alt="Logotyp Design House Stockholm" width="300"></RouterLink>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,6 +21,7 @@
 <script setup>
     import { RouterLink } from 'vue-router';
     import { useRouter } from 'vue-router';
+    import logo from '../assets/DHS_Logo-Secondary_black.png'
 
     const router = useRouter()
 
