@@ -2,6 +2,7 @@
     <Header />
     <div class="container mb-5">
     <form @submit.prevent="updateItem" style="max-width: 800px; margin: 0 auto;">
+        <RouterLink to="/items"><i class="bi bi-arrow-left fs-4"></i></Routerlink>
         <h2 class="mt-1 fw-normal">Ändra vara</h2>
         <div class="form-group mt-3">
             <label for="name">Namn</label>
