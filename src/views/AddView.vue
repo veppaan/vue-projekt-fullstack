@@ -2,7 +2,7 @@
         <Header />
         <div class="container">
         <form @submit.prevent="addItem" style="max-width: 800px; margin: 0 auto;">
-            <h2 class="mt-1">Lägg till produkt</h2>
+            <h2 class="mt-1 fw-normal">Lägg till produkt</h2>
             <div class="form-group mt-3">
                 <label for="name">Namn</label>
                 <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Skriv namnet på varan" v-model="nameInput">

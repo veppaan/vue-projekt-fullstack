@@ -2,10 +2,10 @@
     <Header />
     <div class="container">
 
-    <h1>Alla varor</h1>
+    <h1 class="fw-normal text-center mt-3">Alla varor</h1>
 
-    <div class="addItemBtn">
-    <RouterLink to="/add" class="btn btn-primary btn-sm">Lägg till produkt</RouterLink>
+    <div class="addItemBtn d-flex justify-content-end">
+    <RouterLink to="/add" class="btn btn-primary btn-md">Lägg till produkt</RouterLink>
 </div>
 
     <input type="text" id="searchInput" v-model="searchValue" class="form-control mb-3 mt-3" placeholder="Sök vara...">
@@ -100,7 +100,7 @@
                 }, 3000)
                 const data = await resp.json();
                 console.log(data);
-                
+
                 getItems();
             }
             } catch (error) {

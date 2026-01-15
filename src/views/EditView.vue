@@ -2,7 +2,7 @@
     <Header />
     <div class="container mb-5">
     <form @submit.prevent="updateItem" style="max-width: 800px; margin: 0 auto;">
-        <h2 class="mt-1">Ändra vara</h2>
+        <h2 class="mt-1 fw-normal">Ändra vara</h2>
         <div class="form-group mt-3">
             <label for="name">Namn</label>
             <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Skriv namnet på varan" v-model="item.name">

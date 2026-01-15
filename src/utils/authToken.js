@@ -23,7 +23,7 @@ export const authToken = async () => {
         if(resp.ok) {
             const acceptedToken = await resp.json()
             console.log('Välkommen ' + acceptedToken.user.firstname)
-            return true
+            return {isValid : true, user: acceptedToken.user.firstname}
         }
         } catch (error) {
             router.push('/login')
