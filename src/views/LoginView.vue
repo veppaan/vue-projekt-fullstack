@@ -52,13 +52,13 @@
                 }
                 return
             }
+            const data = await res.json();
             //Lägg in error meddelanden under varje input
             if(!res.ok){
                 errors.value = data.errors;
             }
             //Om autentisering godkänns så skickas användaren till home-sida
             if(res.ok){
-                const data = await res.json();
                 console.log("Inloggning lyckades!");
                 localStorage.setItem('token', data.token);
                 router.push('/home')
