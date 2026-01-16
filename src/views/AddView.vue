@@ -1,6 +1,9 @@
     <template>
+        <!--Lägga till vara View-->
+
         <Header />
         <div class="container">
+        <!--Formulär för att lägga till en vara-->
         <form @submit.prevent="addItem" style="max-width: 800px; margin: 0 auto;">
             <h2 class="mt-1 fw-normal">Lägg till produkt</h2>
             <div class="form-group mt-3">

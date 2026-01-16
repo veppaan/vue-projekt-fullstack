@@ -1,13 +1,15 @@
 <template>
+    <!--View för att visa alla produkter i tabell-->
     <Header />
     <div class="container">
 
     <h1 class="fw-normal text-center mt-3">Alla varor</h1>
 
     <div class="addItemBtn d-flex justify-content-end">
+    <!--Knapp för att tas till AddView-->
     <RouterLink to="/add" class="btn btn-primary btn-md">Lägg till produkt</RouterLink>
 </div>
-
+    <!--Sökfunktion-->
     <input type="text" id="searchInput" v-model="searchValue" class="form-control mb-3 mt-3" placeholder="Sök vara...">
 <div>
     <table class="table mb-5">
@@ -23,7 +25,7 @@
     </tr>
   </thead>
   <tbody id="myTable">
-
+    <!--Visar filtrerade varor-->
     <ItemSection v-for="item in filterItems" :item="item" :key="item._id" @delete-item="deleteItem" @update-stock="updateStock" :is-success="successState[item._id] || false"/>
 
     <p v-if="filterItems.length === 0">Inga produkter matchade sökningen</p>

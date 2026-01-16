@@ -1,4 +1,5 @@
 <template>
+    <!--Tabell-komponent som hämtar ut en varas innehåll-->
     <tr class="align-middle">
       <th scope="row">{{item.name}}</th>
       <td class="d-none d-md-table-cell"><span class="description">{{item.description}}</span></td>
@@ -11,6 +12,7 @@
 </template>
 
 <script setup>
+    //Definiera props
     const props = defineProps({
         item: Object,
         isSuccess: {
@@ -18,7 +20,7 @@
             default: false
         }
     })
-
+    //Denifiera emits
     const emits = defineEmits(["deleteItem", "updateStock"]);
 
 </script>
