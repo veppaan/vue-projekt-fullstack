@@ -30,6 +30,7 @@
     const password = ref('');
     const errors = ref({});
 
+    //Logga in användare med POST-anrop
     const loginUser = async () => {
 
         const inputs = {
@@ -44,15 +45,18 @@
                 },
                 body: JSON.stringify(inputs)
             });
+            //Om det blir autentiseringsfel så lägger jag in ett felmeddelande
             if(res.status === 401){
                 errors.value = {
                     password: 'Fel lösenord/användarnamn'
                 }
                 return
             }
+            //Lägg in error meddelanden under varje input
             if(!res.ok){
                 errors.value = data.errors;
             }
+            //Om autentisering godkänns så skickas användaren till home-sida
             if(res.ok){
                 const data = await res.json();
                 console.log("Inloggning lyckades!");
@@ -68,6 +72,7 @@
 </script>
 
 <style scoped>
+    /* Style för error-texter */
     .error{
         font-weight: 300;
         color: red;

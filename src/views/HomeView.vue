@@ -22,10 +22,13 @@
 
     const usersFirstname = ref('')
 
+    //När viewn visas så körs allt i onMounted
     onMounted(() => {
+        //Kollar token för att få vara på sidan
         const checkingToken = async () => { 
         const res = await authToken()
         if(!res) return
+        //Lägger in användarens förnamn till h1
         usersFirstname.value = res.user
         }
         checkingToken()
@@ -34,6 +37,7 @@
 </script>
 
 <style scoped>
+    /* Style bilder */
     img{
         border-radius: 20px;
         width: 350px;
@@ -41,6 +45,7 @@
         object-fit: cover;
         object-position: center;
     }
+    /* Mellanrum för bilderna */
     .pic{
         gap: 2em;
     }

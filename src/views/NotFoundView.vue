@@ -8,5 +8,8 @@
 </template>
 
 <script setup>
+    //Sida för att fånga upp ändelser som inte finns
+
+
     import HeaderFirst from '@/components/HeaderFirst.vue';    
 </script>

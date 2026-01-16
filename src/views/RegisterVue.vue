@@ -36,6 +36,7 @@
     const firstname = ref('')
     const errors = ref({});
 
+    //POST anrop för att registrera en användare
     const registerUser = async () => {
 
         const inputs = {
@@ -54,6 +55,7 @@
             });
             const data = await res.json()
             if(!res.ok){
+                //Visar error-meddelanden under inputs
                 errors.value = data.errors;
             }
             if(res.ok){
@@ -69,6 +71,7 @@
 </script>
 
 <style scoped>
+    /* Style för error-texter */
     .error{
         font-weight: 300;
         color: red;

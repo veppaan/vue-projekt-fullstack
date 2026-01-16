@@ -49,7 +49,9 @@
     import { useRoute } from 'vue-router';
     import { useRouter } from 'vue-router';
 
+    //När viewn visas så körs allt i onMounted
     onMounted(() => {
+        //Kollar token för att få vara på sidan
         const checkingToken = async () => { await authToken()
         if(!checkingToken) return
 
@@ -75,7 +77,7 @@
             base64string.value = reader.result;
         };
     };
-
+    //Radera en bild som är vald
     const deleteImg = () => {
         console.log(chosenImage.value, base64string.value)
         chosenImage.value = ''
@@ -96,7 +98,7 @@
         image: ''
     })
     
-    //Get metod för att hämta alla produkter
+    //Get anrop för att hämta alla produkter
     const getItem = async () => {
                 const token = localStorage.getItem('token');
                 console.log(token);
@@ -152,6 +154,7 @@
                 },
                 body: JSON.stringify(inputs)
             })
+            //Om det blir ett 413 fel (att filen är för stor) så skriver jag ut ett meddelande
             if(resp.status === 413){
                 errors.value = {
                     image: 'Filen är för stor, välj en mindre'
@@ -159,6 +162,7 @@
                 return
             }
             const data = await resp.json()
+            //Skriver ut felmeddelanden under varje input
             if(!resp.ok){
                 errors.value = data.errors;
             }
@@ -175,6 +179,7 @@
     </script>
 
 <style scoped>
+    /* Style för error-texter */
     .error{
         font-weight: 300;
         color: red;

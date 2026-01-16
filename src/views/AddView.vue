@@ -48,7 +48,9 @@
     import { useRouter } from 'vue-router';
     import { onMounted } from 'vue';
 
+     //När viewn visas så körs allt i onMounted
     onMounted(() => {
+        //Kollar token för att få vara på sidan
         const checkingToken = async () => { await authToken()
         if(!checkingToken) return
         }

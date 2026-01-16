@@ -44,8 +44,10 @@
     
         const items = ref([])
         const searchValue = ref('')
-    
+
+        //När viewn visas så körs allt i onMounted
         onMounted(() => {
+            //Kollar token för att kolla att användaren får vara på sidan
         const checkingToken = async () => { await authToken()
         if(!checkingToken) return
         
@@ -107,14 +109,16 @@
                 console.log("Error updating stock: " + error)
             }
         }
-
+        //Radera en vara
         const deleteItem = async (id, name) => {
             console.log(id, name)
+        //Dubbelkollar först så att användaren verkligen skulle radera
         const ask = confirm("Vill du verkligen radera " + name + "?")
         if(!ask){
             return
         } else{
             const token = localStorage.getItem('token');
+            //Delete anrop
             try {
                 
             const resp = await fetch(`https://backend-projekt-fullstack.onrender.com/items/${id}`, {
