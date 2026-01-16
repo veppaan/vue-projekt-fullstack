@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import ItemsView from '@/views/ItemsView.vue'
 import LoginView from '@/views/LoginView.vue'
-import RegisterVue from '@/views/RegisterVue.vue'
 import AddView from '@/views/AddView.vue'
 import EditView from '@/views/EditView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 //Alla routers för alla sidor
 const router = createRouter({
@@ -39,7 +39,7 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: RegisterVue
+      component: RegisterView
     },
     {
       path: '/edit/:id',
