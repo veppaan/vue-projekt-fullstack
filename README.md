@@ -1,38 +1,23 @@
-# vue-project
+**Vera Kippel veki2400**
 
-This template should help get you started developing with Vue 3 in Vite.
+Projektuppgift för Fullstack-utvecklin med ramverk  
+Detta är frontend-delen av projektet.  
 
-## Recommended IDE Setup
+Projektet använder Vue som frontend-ramverk och Boostrap som CSS-ramverk.  
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Komponenter som har skapats:
+- Header.vue : Header för inloggade användare
+- HeadersFirst.vue : Header för icke inloggade
+- ItemSection.vue : Skriver ut specifika varor i egna rader inuti en tabell
 
-## Recommended Browser Setup
+I assets-mapp finns bilder som används i applikationen som inte är dynamiskt.  
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+I utils har det skapats en authToken.js som gör ett POST-anrop som kollar om token finns och om den är giltig.  
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+Views som har skapats:
+- AddView.vue : Vy för att lägga till en ny produkt
+- EditView.vue : Vy för att redigera en existerande produkt
+- HomeView.vue : Startsida för inloggade som visar en dynamisk h1-rubrik för den specifika användaren. Visar även text och bilder.
+- ItemsView.vue : Vy som visar alla existerande produkter i en tabell. Det finns även en sökfunktion över tabellen.
+- LoginView.vue : Vy för att logga in en existerande användare
+- RegisterView.vue : Vy som registrerar ett nytt konto för en användare
