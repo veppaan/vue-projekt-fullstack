@@ -81,10 +81,8 @@
     };
 
     const deleteImg = () => {
-        console.log(chosenImage.value, base64string.value)
         chosenImage.value = ''
         base64string.value = null
-        console.log(chosenImage.value, base64string.value)
     }
 
     const nameInput = ref('');
@@ -97,7 +95,6 @@
 
     const addItem = async () => {
             const token = localStorage.getItem('token');
-            console.log(token);
 
                 let inputs = {
                 name: nameInput.value,
@@ -114,7 +111,6 @@
         
     
             try {
-                console.log(inputs)
             const res = await fetch("https://backend-projekt-fullstack.onrender.com/items", {
                 method: "POST",
                 headers: {
@@ -131,7 +127,6 @@
             }
             const data = await res.json()
             if(!res.ok){
-                console.log(data)
                 errors.value = data.errors;
             }
             if(res.ok){

@@ -81,11 +81,9 @@
     };
     //Radera en bild som är vald
     const deleteImg = () => {
-        console.log(chosenImage.value, base64string.value)
         chosenImage.value = ''
         base64string.value = null
         item.value.image = ''
-        console.log(chosenImage.value, base64string.value)
     }
 
     const route = useRoute()
@@ -103,7 +101,6 @@
     //Get anrop för att hämta alla produkter
     const getItem = async () => {
                 const token = localStorage.getItem('token');
-                console.log(token);
                 const id = route.params.id
                 try {
                 const resp = await fetch(`https://backend-projekt-fullstack.onrender.com/items/${id}`, {
@@ -115,7 +112,6 @@
                 })
                 if(resp.ok) {
                     const data = await resp.json();
-                    console.log(data);
                     item.value.name = data.name
                     item.value.description = data.description
                     item.value.price = data.price
@@ -143,10 +139,8 @@
                 if(base64string.value){
                     inputs.image = base64string.value
                 }
-            console.log(inputs)
             const token = localStorage.getItem('token');
             const id = route.params.id
-            console.log(id)
             try {
             const resp = await fetch(`https://backend-projekt-fullstack.onrender.com/items/${id}`, {
                 method: "PUT",
@@ -169,7 +163,6 @@
                 errors.value = data.errors;
             }
             if(resp.ok) {
-                console.log(data);
                 console.log("Vara uppdaterad!");
                 router.push('/items')
             }

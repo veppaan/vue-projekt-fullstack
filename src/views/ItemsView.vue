@@ -61,7 +61,6 @@
         //Get metod för att hämta alla produkter
         const getItems = async () => {
             const token = localStorage.getItem('token');
-            console.log(token);
             try {
             const resp = await fetch("https://backend-projekt-fullstack.onrender.com/items", {
                 method: "GET",
@@ -72,7 +71,6 @@
             })
             if(resp.ok) {
                 const data = await resp.json();
-                console.log(data);
                 items.value = data;
             }
             } catch (error) {
@@ -103,7 +101,6 @@
                     successState[id] = false
                 }, 3000)
                 const data = await resp.json();
-                console.log(data);
 
                 getItems();
             }
