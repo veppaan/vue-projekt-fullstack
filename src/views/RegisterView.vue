@@ -51,7 +51,6 @@
                 password: password.value,
                 key: key.value
         }
-        console.log(inputs)
 
         try {
             const res = await fetch("https://backend-projekt-fullstack.onrender.com/admins/register", {
