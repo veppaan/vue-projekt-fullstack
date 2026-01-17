@@ -67,7 +67,7 @@
                 errors.value = data.errors;
             }
             if(res.ok){
-                console.log("Registrering lyckades " + firstname);
+                console.log("Registrering lyckades " + firstname.value);
                 router.push('/login')
             }
             
