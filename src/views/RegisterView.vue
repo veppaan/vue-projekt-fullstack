@@ -18,6 +18,11 @@
             <input type="password" class="form-control" id="password" placeholder="Skriv ditt lösenord" v-model="password">
             <p class="error" v-if="errors['password']">{{ errors['password'] }}</p>
         </div>
+        <div class="form-group col-12 col-md-6 mt-2">
+            <label for="code">Företagskod:</label>
+            <input type="password" class="form-control" id="code" placeholder="Skriv in företagskoden" v-model="key">
+            <p class="error" v-if="errors['key']">{{ errors['key'] }}</p>
+        </div>
 
         <button type="submit" class="btn btn-primary mt-4">Registrera</button>
     </form>
@@ -34,6 +39,7 @@
     const username = ref('');
     const password = ref('');
     const firstname = ref('')
+    const key = ref('')
     const errors = ref({});
 
     //POST anrop för att registrera en användare
@@ -43,6 +49,7 @@
                 firstname: firstname.value,
                 username: username.value,
                 password: password.value,
+                key: key.value
         }
 
         try {

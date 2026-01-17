@@ -31,9 +31,7 @@
     const router = useRouter()
     //Loggar ut en användare
     const logout = () => {
-        console.log("klick")
         const token = localStorage.getItem('token')
-        console.log(token)
         localStorage.removeItem('token')
         router.push('/login')
     }
