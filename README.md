@@ -1,9 +1,10 @@
 **Vera Kippel veki2400**
 
-Projektuppgift för Fullstack-utvecklin med ramverk  
-Detta är frontend-delen av projektet.  
+Projektuppgift för Fullstack-utveckling med ramverk  
+Detta är frontend-delen av projektet Kippels Keramik.  
 
 Projektet använder Vue som frontend-ramverk och Boostrap som CSS-ramverk.  
+Applikationen är skapat för ett lagerhanteringssystem som gör anrop mot en REST-webbtjänst.
 
 Komponenter som har skapats:
 - Header.vue : Header för inloggade användare
