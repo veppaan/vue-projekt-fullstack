@@ -21,3 +21,4 @@ Views som har skapats:
 - ItemsView.vue : Vy som visar alla existerande produkter i en tabell. Det finns även en sökfunktion över tabellen.
 - LoginView.vue : Vy för att logga in en existerande användare
 - RegisterView.vue : Vy som registrerar ett nytt konto för en användare
+- NotFoundView.vue : Vi som fångar upp alla ändelser/vyer som inte hittas
